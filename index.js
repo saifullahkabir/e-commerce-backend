@@ -38,6 +38,15 @@ const client = new MongoClient(uri, {
 async function run() {
     try {
 
+        const productsCollection = client.db('e-commerce').collection('products');
+        const usersCollection = client.db('e-commerce').collection('users');
+
+
+        // get all products data
+        app.get('/products', async (req, res) => {
+            const products = await productsCollection.find.toArray();
+            res.send(products);
+        })
 
         console.log("MongoDB connected successfully!");
     } catch (err) {

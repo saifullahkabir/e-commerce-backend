@@ -48,6 +48,13 @@ async function run() {
             res.send(products);
         })
 
+        // upload a product
+        app.post('/product', async (res, res) => {
+        const productData = req.body;
+        const result = await productsCollection.insertOne(productData);
+        res.send(result);
+        })
+
         console.log("MongoDB connected successfully!");
     } catch (err) {
         console.error('MongoDB connection error:', err);
